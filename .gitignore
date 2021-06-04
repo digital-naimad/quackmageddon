@@ -58,3 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/GoogleVR/Beta/Demos/
+Assets/GoogleVR/Demos/
+Assets/GoogleVR/Demos.meta
+Assets/GoogleVR/Beta/Demos.meta
