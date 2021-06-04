@@ -59,24 +59,14 @@ namespace Quackmageddon
         /// </summary>
         public void OnSpawn()
         {
-           /* 
-           float xForce = Random.Range(-sideForce, sideForce);
-           float yForce = Random.Range(upForce / 2f, upForce);
-           float zForce = Random.Range(-sideForce, sideForce);
-
-
-           Vector3 force = new Vector3(xForce, yForce, zForce);
-            
-           GetComponent<Rigidbody>().velocity = force;
-           */
-
+            this.RigidBody.useGravity = false;
         }
 
         #endregion
 
         public void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("COLLIDED");
+            this.RigidBody.useGravity = true;
         }
 
     }
