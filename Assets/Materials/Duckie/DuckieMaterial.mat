@@ -52,7 +52,7 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DstBlend: 10
-    - _GlossMapScale: 0.809
+    - _GlossMapScale: 0.612
     - _Glossiness: 1
     - _GlossinessSource: 1
     - _GlossyReflections: 1
