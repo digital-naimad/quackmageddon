@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2877127224102051493}
   m_Layer: 0
   m_Name: EnemyDuckie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2af3f0f1fc8b3449cb2e89402872d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialHealthAmount: 100
   meshesContainer: {fileID: 7696655426773930458}
   explosionEffect: {fileID: 349679711171068732}
-  health: 100
 --- !u!1 &2367759011013485668
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +384,10 @@ PrefabInstance:
     - target: {fileID: 100010, guid: 9fc1d1a4c86425340895cfcbf8ae8c4b, type: 3}
       propertyPath: m_Name
       value: ExplosionParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 9fc1d1a4c86425340895cfcbf8ae8c4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 9fc1d1a4c86425340895cfcbf8ae8c4b, type: 3}
       propertyPath: m_LocalPosition.x

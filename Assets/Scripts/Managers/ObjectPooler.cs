@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
@@ -15,10 +14,7 @@ public class ObjectPooler : MonoBehaviour
     public List<Pool> poolsList;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
