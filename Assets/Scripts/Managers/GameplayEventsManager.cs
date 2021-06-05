@@ -45,8 +45,6 @@ namespace Quackmageddon
             if (!listenersDictionary.ContainsKey(eventType))
             {
                 Debug.Log("listenersDictionary: Cannot unregister callback for eventType: " + eventType);
-
-                listenersDictionary[eventType].Remove(callbackFunction);
                 return;
             }
 
@@ -69,6 +67,7 @@ namespace Quackmageddon
             if (!listenersDictionary.ContainsKey(eventType))
             {
                 Debug.Log("There is no any listeners registered for eventType: " + eventType);
+                return;
             }
 
             foreach (Action<short> listener in listenersDictionary[eventType])

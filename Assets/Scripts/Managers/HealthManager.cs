@@ -72,7 +72,7 @@ namespace Quackmageddon
 
         private void OnDestroy()
         {
-            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.PlayerHit, (foo) => { OnPlayerHit(); });
+            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.PlayerHit, OnPlayerHit);
         }
         #endregion
 
