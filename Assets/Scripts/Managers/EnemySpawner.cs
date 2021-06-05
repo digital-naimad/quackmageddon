@@ -87,7 +87,7 @@ namespace Quackmageddon
             );
 
             Enemy spawnedEnemyController = spawnedEnemyObject.GetComponent<Enemy>();
-            spawnedEnemyController.RigidBody.velocity = initialForce;
+            spawnedEnemyController.Rigidbody.velocity = initialForce;
         }
 
         #endregion
