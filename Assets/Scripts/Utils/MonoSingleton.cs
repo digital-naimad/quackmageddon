@@ -1,40 +1,67 @@
-﻿
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Implementation of Singleton Pattern
+/// Thread-safe implementation of Singleton Pattern for MonoBehaviour.
+/// Note: Based on dictionary instead of using FindObjectsOfType or creating GameObject during the game, which are very inefficient
 /// </summary>
 /// <typeparam name="T">The type we want to make a singleton</typeparam>
+
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
-    private static T self = null;
+    #region Static fields
+    protected static bool Quitting { get; private set; }
 
-    /// <summary>
-    /// 
-    /// </summary>
+    private static readonly object Lock = new object();
+    private static Dictionary<System.Type, MonoSingleton<T>> instancesDictionary;
+    #endregion
+
+    #region Static instance getter
     public static T Instance
     {
         get
         {
-            // Instance requiered for the first time, we look for it
-            if (self == null)
+            lock (Lock)
             {
-                self = GameObject.FindObjectOfType(typeof(T)) as T;
-            }
-            return self;
-        }
-    }
+                if (instancesDictionary == null)
+                {
+                    instancesDictionary = new Dictionary<System.Type, MonoSingleton<T>>();
+                }
 
-    private void Awake()
-    {
-        if (self == null)
-        {
-            self = this as T;
-        }
-        else if (self != this)
-        {
-            Destroy(this);
-            return;
+                if (instancesDictionary.ContainsKey(typeof(T)))
+                {
+                    return (T)instancesDictionary[typeof(T)];
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
     }
+    #endregion
+
+    #region MonoBehaviour's inherited methods
+    private void OnEnable()
+    {
+        lock (Lock)
+        {
+            if (instancesDictionary == null)
+            {
+                instancesDictionary = new Dictionary<System.Type, MonoSingleton<T>>();
+            }
+
+            if (instancesDictionary.ContainsKey(this.GetType()))
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                instancesDictionary.Add(this.GetType(), this);
+
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+    }
+    #endregion
 }
