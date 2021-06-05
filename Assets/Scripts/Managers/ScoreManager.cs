@@ -1,40 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Quackmageddon
 {
+    /// <summary>
+    /// Communicates changes in current score value by dispatching GameplayEventType.ScoreUpdate and also listening to EnemyHit and Destroyed events
+    /// </summary>
     public class ScoreManager : MonoBehaviour
     {
+        #region Private fields & properties
         [SerializeField]
         private short pointsForHittingEnemy = 50;
 
         [SerializeField]
         private short pointsForDestroyedEnemy = 250;
 
+        private short CurrentScore
+        {
+            get
+            {
+                return currentScore;
+            }
+            set
+            {
+                currentScore = (short)Mathf.Max(value, 0);
+
+                GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.ScoreUpdate, currentScore);
+            }
+        }
         private short currentScore = 0;
+        #endregion
 
         #region Life-cycle callbacks
-
-        void Start()
+        private void Start()
         {
-            //GameplayEventsManager.Instance.RegisterListener(GameplayEventType.EnemyHit, (foo) => { OnEnemyHit(); });
             GameplayEventsManager.Instance.RegisterListener(GameplayEventType.EnemyHit, OnEnemyHit);
-            //GameplayEventsManager.Instance.RegisterListener(GameplayEventType.EnemyDestroyed, (foo) => { OnEnemyDestroyed(); });
             GameplayEventsManager.Instance.RegisterListener(GameplayEventType.EnemyDestroyed, OnEnemyDestroyed);
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         private void OnDestroy()
         {
-           // GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyHit, (foo) => { OnEnemyHit(); });
             GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyHit,  OnEnemyHit );
-            //GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyDestroyed, (foo) => { OnEnemyDestroyed(); });
             GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyDestroyed, OnEnemyDestroyed);
         }
         #endregion
@@ -43,20 +48,13 @@ namespace Quackmageddon
 
         private void OnEnemyHit(short foo = 0)
         {
-            Debug.Log("HIT");
             currentScore += pointsForHittingEnemy;
-
-            GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.ScoreUpdate, currentScore);
         }
 
         private void OnEnemyDestroyed(short foo = 0)
         {
-            Debug.Log("DESTROY");
             currentScore += pointsForDestroyedEnemy;
-
-            GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.ScoreUpdate, currentScore);
         }
         #endregion
-
     }
 }
