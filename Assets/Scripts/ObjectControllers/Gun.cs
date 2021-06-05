@@ -1,8 +1,10 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Quackmageddon
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Gun : MonoBehaviour
     {
         #region Inspector's fields
@@ -17,7 +19,7 @@ namespace Quackmageddon
         private float range = 100f;
 
         [SerializeField]
-        private Camera fpsCamera;
+        private Camera camera;
 
         [SerializeField]
         private ParticleSystem flashEffect;
@@ -38,9 +40,8 @@ namespace Quackmageddon
         #endregion
 
         #region Life-cycle callbacks 
-        void Update()
+        private void Update()
         {
-            // if (Input.GetButtonDown("Fire1"))
             if (Input.GetButton("Fire1"))
             {
                 if (Time.time >= autofireCooldown)
@@ -61,7 +62,7 @@ namespace Quackmageddon
 
             RaycastHit hit;
 
-            if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
+            if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range))
             {
                 Enemy enemyController = hit.transform.GetComponent<Enemy>();
 
