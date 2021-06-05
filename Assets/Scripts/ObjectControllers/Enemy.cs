@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Quackmageddon
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Enemy : MonoBehaviour, IPooledObject
     {
         #region Static members
@@ -22,7 +25,6 @@ namespace Quackmageddon
 
         [SerializeField]
         private ExplosionController explosionEffect;
-
        
         /// <summary>
         /// Property.
@@ -47,17 +49,6 @@ namespace Quackmageddon
 
         #endregion
 
-        #region Life-cycle callbacks
-
-
-
-        void Update()
-        {
-
-        }
-
-        #endregion
-
         #region IPooledObject interface's methods implementation
 
         /// <summary>
@@ -67,7 +58,14 @@ namespace Quackmageddon
         {
             currentHealthAmount = initialHealthAmount;
 
+            this.Rigidbody.angularVelocity = Vector3.zero;
+
             meshesContainer.SetActive(true);
+
+            if (explosionEffect != null)
+            {
+                explosionEffect.gameObject.SetActive(false);
+            }
 
             this.Rigidbody.useGravity = false;
         }
@@ -75,36 +73,54 @@ namespace Quackmageddon
         #endregion
 
         #region Public methods
-
-        public void OnCollisionEnter(Collision collision)
-        {
-           this.Rigidbody.useGravity = true;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="amount"></param>
         public void TakeDamage(float amount)
         {
             currentHealthAmount -= amount;
 
-            if (currentHealthAmount <= 0f)
+            if (currentHealthAmount > 0f)
             {
-                DoExplode();
+                this.Rigidbody.useGravity = true;
+
+                GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyHit);
             }
             else
             {
-                this.Rigidbody.useGravity = true;
+                currentHealthAmount = 0f;
+                DoExplode();
+
+                GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyDestroyed);
             }
         }
+        #endregion
 
+        #region Private methods
         private void DoExplode()
         {
             if (explosionEffect != null)
             {
+                explosionEffect.gameObject.SetActive(true);
                 explosionEffect.LaunchAnimations();
             }
 
             meshesContainer.SetActive(false);
+            this.Rigidbody.useGravity = false;
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            this.Rigidbody.useGravity = true;
+
+            if (collision.collider.CompareTag("Base"))
+            {
+                DoExplode();
+
+                GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.PlayerHit);
+            }
+        }
         #endregion
     }
 }
