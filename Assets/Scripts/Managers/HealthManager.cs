@@ -8,11 +8,13 @@ namespace Quackmageddon
     /// </summary>
     public class HealthManager : MonoBehaviour
     {
+        public const short FullHealthValue = 100;
+
         #region Inspector fields
-        [SerializeField, Range(0, 100)]
+        [SerializeField, Range(0, FullHealthValue)]
         private short damagePointsForHit = 20;
 
-        [SerializeField, Range(0, 100)]
+        [SerializeField, Range(0, FullHealthValue)]
         private short healPointsPerIteration = 1;
 
         [SerializeField]
@@ -29,7 +31,7 @@ namespace Quackmageddon
             set
             {
                 short previousHealthPoints = this.currentHealthPoints;
-                this.currentHealthPoints = (short)Mathf.Clamp(value, 0, 100);
+                this.currentHealthPoints = (short)Mathf.Clamp(value, 0, FullHealthValue);
 
                 if (previousHealthPoints != this.currentHealthPoints)
                 {
@@ -48,7 +50,7 @@ namespace Quackmageddon
         {
             GameplayEventsManager.Instance.RegisterListener(GameplayEventType.PlayerHit, (foo) => { OnPlayerHit(); });
 
-            CurrentHealthPoints = 100;
+            CurrentHealthPoints = FullHealthValue;
         }
 
         private void Update()
@@ -99,11 +101,11 @@ namespace Quackmageddon
 
         private IEnumerator HealPlayer()
         {
-            for (short healthHelper = CurrentHealthPoints; healthHelper <= 100;  healthHelper += healPointsPerIteration)
+            for (short healthHelper = CurrentHealthPoints; healthHelper <= FullHealthValue;  healthHelper += healPointsPerIteration)
             {
                 CurrentHealthPoints = healthHelper;
 
-                yield return new WaitForSeconds(.2f);
+                yield return new WaitForSeconds(1f);
             }
             CurrentHealthPoints = 100;
             isHealing = false;
