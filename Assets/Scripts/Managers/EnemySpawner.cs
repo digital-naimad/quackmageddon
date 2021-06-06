@@ -13,6 +13,9 @@ namespace Quackmageddon
         private ObjectPooler pooler;
 
         [SerializeField]
+        private Camera cameraToLookAt;
+
+        [SerializeField]
         private float spawnIntervalInSeconds = 3f;
 
         [SerializeField]
@@ -86,6 +89,7 @@ namespace Quackmageddon
 
             Enemy spawnedEnemyController = spawnedEnemyObject.GetComponent<Enemy>();
             spawnedEnemyController.Rigidbody.velocity = initialForce;
+            spawnedEnemyController.billboard.cameraToLookAt = cameraToLookAt;
         }
 
         #endregion
