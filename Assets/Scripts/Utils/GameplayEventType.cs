@@ -8,6 +8,7 @@ namespace Quackmageddon
     {
         public const string EnemyHit = "Enemy hit";
         public const string EnemyDestroyed = "Enemy destroyed";
+        public const string EnemyBeakshot = "Enemy beakshot";
 
         public const string PlayerHit = "Player hit";
 

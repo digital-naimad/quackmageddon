@@ -10,6 +10,7 @@ namespace Quackmageddon
     {
         #region Static members
         public static readonly string TagName = "Duckie";
+        public static readonly string BeakshotTag = "EnemyBeak";
         #endregion
 
         #region Properties & fields
@@ -108,6 +109,16 @@ namespace Quackmageddon
 
                 GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyDestroyed);
             }
+        }
+
+        /// <summary>
+        /// Dispatches EnemyBeakshot GameplayEvent and also triggers enemy explosion
+        /// </summary>
+        public void NotifyBeakshot()
+        {
+            GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyBeakshot);
+
+            DoExplode();
         }
         #endregion
 

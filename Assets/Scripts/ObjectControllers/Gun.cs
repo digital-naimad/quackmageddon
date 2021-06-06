@@ -33,10 +33,8 @@ namespace Quackmageddon
         #endregion
 
         #region Private fields
-
         private float autofireCooldown = 0f;
         private float impactEffectLifespan = 2f;
-
         #endregion
 
         #region Life-cycle callbacks 
@@ -68,6 +66,11 @@ namespace Quackmageddon
 
                 if (enemyController != null)
                 {
+                    if (hit.collider.CompareTag(Enemy.BeakshotTag))
+                    {
+                        enemyController.NotifyBeakshot();
+                    }
+
                     enemyController.TakeDamage(damage);
                     enemyController.Rigidbody.AddForce(-hit.normal * impactIntensity);
                 }

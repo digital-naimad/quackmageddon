@@ -7,13 +7,18 @@ namespace Quackmageddon
     /// </summary>
     public class ScoreManager : MonoBehaviour
     {
-        #region Private fields & properties
+        #region Inscpector fields
         [SerializeField]
         private short pointsForHittingEnemy = 50;
 
         [SerializeField]
         private short pointsForDestroyedEnemy = 250;
 
+        [SerializeField]
+        private short pointsForBeakshot = 1000;
+        #endregion
+
+        #region Private properties and fields
         private short CurrentScore
         {
             get
@@ -35,17 +40,18 @@ namespace Quackmageddon
         {
             GameplayEventsManager.Instance.RegisterListener(GameplayEventType.EnemyHit, OnEnemyHit);
             GameplayEventsManager.Instance.RegisterListener(GameplayEventType.EnemyDestroyed, OnEnemyDestroyed);
+            GameplayEventsManager.Instance.RegisterListener(GameplayEventType.EnemyBeakshot, OnEnemyHeadshot);
         }
 
         private void OnDestroy()
         {
            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyHit, OnEnemyHit );
            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyDestroyed, OnEnemyDestroyed);
+           GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyBeakshot, OnEnemyHeadshot);
         }
         #endregion
 
         #region Gameplay event listeners
-
         private void OnEnemyHit(short foo = 0)
         {
             CurrentScore += pointsForHittingEnemy;
@@ -54,6 +60,11 @@ namespace Quackmageddon
         private void OnEnemyDestroyed(short foo = 0)
         {
             CurrentScore += pointsForDestroyedEnemy;
+        }
+
+        private void OnEnemyHeadshot(short foo = 0)
+        {
+            CurrentScore += pointsForBeakshot;
         }
         #endregion
     }
