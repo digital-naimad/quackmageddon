@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
+  autoFireFrequency: 0.06666667
   range: 100
-  fpsCamera: {fileID: 0}
+  camera: {fileID: 0}
   flashEffect: {fileID: 6762883957516407123}
   impactEffectPrefab: {fileID: 100006, guid: 70b317454216e2840b1f740404cd2fbd, type: 3}
   impactIntensity: 100
@@ -93,7 +94,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 2
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30

@@ -1,8 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// </summary>
 public class ObjectPooler : MonoBehaviour
 {
+    #region Inspector fields
     [System.Serializable]
     public struct Pool
     {
@@ -11,8 +15,11 @@ public class ObjectPooler : MonoBehaviour
         public short poolSize;
     }
 
-    public List<Pool> poolsList;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    [SerializeField]
+    private List<Pool> poolsList;
+    #endregion
+
+    private Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private void Start()
     {

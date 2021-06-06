@@ -10,7 +10,7 @@ namespace Quackmageddon
         #region Inspector's fields
 
         [SerializeField]
-        private float damage = 10f;
+        private short damage = 10;
 
         [SerializeField]
         private float autoFireFrequency = 1f / 15f;

@@ -23,7 +23,7 @@ namespace Quackmageddon
             set
             {
                 currentScore = (short)Mathf.Max(value, 0);
-
+                
                 GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.ScoreUpdate, currentScore);
             }
         }
@@ -39,8 +39,8 @@ namespace Quackmageddon
 
         private void OnDestroy()
         {
-            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyHit, OnEnemyHit );
-            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyDestroyed, OnEnemyDestroyed);
+           GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyHit, OnEnemyHit );
+           GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.EnemyDestroyed, OnEnemyDestroyed);
         }
         #endregion
 
@@ -48,12 +48,12 @@ namespace Quackmageddon
 
         private void OnEnemyHit(short foo = 0)
         {
-            currentScore += pointsForHittingEnemy;
+            CurrentScore += pointsForHittingEnemy;
         }
 
         private void OnEnemyDestroyed(short foo = 0)
         {
-            currentScore += pointsForDestroyedEnemy;
+            CurrentScore += pointsForDestroyedEnemy;
         }
         #endregion
     }

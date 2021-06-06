@@ -4,7 +4,6 @@ namespace Quackmageddon
     /// <summary>
     /// Contains gameplay event types strings
     /// </summary>
-
     public class GameplayEventType
     {
         public const string EnemyHit = "Enemy hit";
