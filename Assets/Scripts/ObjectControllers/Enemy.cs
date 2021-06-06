@@ -1,31 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Quackmageddon
 {
     /// <summary>
-    /// 
+    /// Enemy prefab controller implementing IPooledObject interface. 
+    /// Controls enemy health value.  Contains own Canvas to display HP bar. Launches explosion effect.
     /// </summary>
     public class Enemy : MonoBehaviour, IPooledObject
     {
         #region Static members
-
         public static readonly string TagName = "Duckie";
-
         #endregion
 
-        #region properties & fields
+        #region Properties & fields
 
         [SerializeField]
-        private float initialHealthAmount = 100f;
+        private short initialHealthAmount = HealthManager.FullHealthValue;
 
         [SerializeField]
         private GameObject meshesContainer;
 
         [SerializeField]
+        private Canvas ownedCanvas;
+
+        [SerializeField]
+        public BillboardView billboard;
+
+        [SerializeField]
+        public HealthBar healthBar;
+
+        [SerializeField]
         private ExplosionController explosionEffect;
-       
+
         /// <summary>
         /// Property.
         /// Note: caches rigid body component in private field
@@ -34,19 +40,29 @@ namespace Quackmageddon
         {
             get
             {
-                if (this._rigidBody == null)
+                if (this.rigidBody == null)
                 {
-                    this._rigidBody = GetComponent<Rigidbody>();
+                    this.rigidBody = GetComponent<Rigidbody>();
                 }
-                return this._rigidBody;
+                return this.rigidBody;
             }
         }
 
+        private short CurrentHealthAmount
+        {
+            get
+            {
+                return currentHealthAmount;
+            }
+            set
+            {
+                currentHealthAmount = value;
+                healthBar.SetCurrentHealth(value);
+            }
+        }
 
-        private float currentHealthAmount = 0f;
-
-        private Rigidbody _rigidBody = null;
-
+        private short currentHealthAmount = 0;
+        private Rigidbody rigidBody = null;
         #endregion
 
         #region IPooledObject interface's methods implementation
@@ -56,40 +72,38 @@ namespace Quackmageddon
         /// </summary>
         public void OnSpawn()
         {
-            currentHealthAmount = initialHealthAmount;
+            healthBar.SetMaxHealth(initialHealthAmount);
 
-            this.Rigidbody.angularVelocity = Vector3.zero;
-
-            meshesContainer.SetActive(true);
+            CurrentHealthAmount = initialHealthAmount;
 
             if (explosionEffect != null)
             {
                 explosionEffect.gameObject.SetActive(false);
             }
 
+            meshesContainer.SetActive(true);
+            ownedCanvas.gameObject.SetActive(true);
+            this.Rigidbody.angularVelocity = Vector3.zero;
             this.Rigidbody.useGravity = false;
         }
 
         #endregion
 
         #region Public methods
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="amount"></param>
-        public void TakeDamage(float amount)
+        /// <param name="healthPointsAmount">short</param>
+        public void TakeDamage(short healthPointsAmount)
         {
-            currentHealthAmount -= amount;
+            CurrentHealthAmount -= healthPointsAmount;
 
-            if (currentHealthAmount > 0f)
+            if (currentHealthAmount > 0)
             {
                 this.Rigidbody.useGravity = true;
-
+                
                 GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyHit);
             }
             else
             {
-                currentHealthAmount = 0f;
+                CurrentHealthAmount = 0;
                 DoExplode();
 
                 GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyDestroyed);
@@ -107,6 +121,7 @@ namespace Quackmageddon
             }
 
             meshesContainer.SetActive(false);
+            ownedCanvas.gameObject.SetActive(false);
             this.Rigidbody.useGravity = false;
         }
 
