@@ -1,40 +1,61 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// 
-/// </summary>
-public class HealthBar : MonoBehaviour
+namespace Quackmageddon
 {
-    #region Inspector's fields
-    [SerializeField]
-    private Slider progressSlider;
-
-    [SerializeField]
-    private Image fillImage;
-
-    [SerializeField]
-    private Gradient progressGradient;
-
-    [SerializeField]
-    private short maxHealth = 100;
-
-    [SerializeField]
-    private short currentHealth = 0;
-    #endregion
-
-    public void SetMaxHealth(int value)
+    /// <summary>
+    /// Health bar prefab controller class
+    /// </summary>
+    public class HealthBar : MonoBehaviour
     {
-        progressSlider.maxValue = value;
-        progressSlider.value = value;
+        #region Inspector's fields
+        [SerializeField]
+        private Slider progressSlider;
 
-        fillImage.color = progressGradient.Evaluate(1f);
+        [SerializeField]
+        private Image fillmentImage;
+
+        [SerializeField]
+        private Gradient progressGradient;
+
+        [SerializeField]
+        private float smoothing = 3f;
+        #endregion
+
+        private float targetValue = HealthManager.FullHealthValue;
+
+        #region Life cycle callbacks
+        private void Update()
+        {
+            if (progressSlider.value != targetValue)
+            {
+                RefreshSliderFillment();
+            }
+        }
+        #endregion
+
+        #region Public methods
+
+        /// <param name="healthLimit">Defines value of fullfilled HP bar</param>
+        public void SetMaxHealth(int healthLimit)
+        {
+            progressSlider.maxValue = healthLimit;
+            progressSlider.value = healthLimit;
+
+            fillmentImage.color = progressGradient.Evaluate(1f);
+        }
+
+        /// <param name="targetValue">Health points to set</param>
+        public void SetCurrentHealth(short targetValue)
+        {
+            this.targetValue = targetValue;
+        }
+        #endregion
+
+        private void RefreshSliderFillment()
+        {
+            progressSlider.value = Mathf.Lerp(progressSlider.value, targetValue, smoothing * Time.deltaTime);
+            fillmentImage.color = progressGradient.Evaluate(progressSlider.normalizedValue);
+        }
     }
-
-    public void SetCurrentHealth(int value)
-    {
-        progressSlider.value = value;
-        fillImage.color = progressGradient.Evaluate(progressSlider.normalizedValue);
-    }
-
 }
