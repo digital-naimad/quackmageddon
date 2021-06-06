@@ -13,11 +13,13 @@ namespace Quackmageddon
         private HealthBar playerHealthBar;
 
         [SerializeField]
+        private Animator healthIconAnimator;
+
+        [SerializeField]
         private TMP_Text scoreLabel;
 
         [SerializeField]
         private Animator scoreLabelAnimator;
-
         #endregion
 
         #region Life cycle callbacks
@@ -40,6 +42,8 @@ namespace Quackmageddon
         private void OnHealthUpdate(short currentHealth)
         {
             this.playerHealthBar.SetCurrentHealth(currentHealth);
+
+            this.healthIconAnimator.Play("Heartbeat", -1, 0f);
         }
 
         private void OnScoreUpdate(short currentScore)
