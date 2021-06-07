@@ -130,7 +130,27 @@ public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
 
 * ### Gun controller script
 ![Gun controllers inspector](https://user-images.githubusercontent.com/1534654/121089059-df700c80-c7e6-11eb-8e64-1622dd4064be.png)
+
 *Inspector's fields*
+
+      * Uses raycasting technique to aiming targets and shooting
+      
+      ```cs private void Update()
+        {
+            RaycastHit hit;
+            bool isHittingAnything = Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range);
+
+            if (isHittingAnything)
+            {
+                if (hit.collider.CompareTag(Enemy.EnemyTag))
+                {
+                    aimPointer.color = enemyPointingColor;
+                }
+                
+                (..)
+                ```
+                
+                
 
 * ### Health Manager
 
