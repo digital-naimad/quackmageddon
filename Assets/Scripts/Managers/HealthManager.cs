@@ -36,7 +36,18 @@ namespace Quackmageddon
                 if (previousHealthPoints != this.currentHealthPoints)
                 {
                     GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.HealthUpdate, currentHealthPoints);
+
+                    if (currentHealthPoints == 0)
+                    {
+                        GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.PauseSpawning);
+                    }
+                    else if (currentHealthPoints == FullHealthValue)
+                    {
+                        GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.ResumeSpawning);
+                    }
                 }
+
+               
             }
         }
 
@@ -78,7 +89,7 @@ namespace Quackmageddon
 
         #region Private methods
         /// <summary>
-        /// 
+        /// Starts coroutine for healing
         /// </summary>
         /// <param name="foo">Unused, optional parameter placed here for compatibility with GameplayEventsManager</param>
         private void OnPlayerHit(short foo = 0)
