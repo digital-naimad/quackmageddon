@@ -688,7 +688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsForHittingEnemy: 50
-  pointsForDestroyedEnemy: 500
+  pointsForDestroyedEnemy: 250
   pointsForBeakshot: 1000
 --- !u!4 &870053919
 Transform:
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   spawnIntervalInSeconds: 3
   spawnHorizontalDistance: 70
   spawnAltitude: 0.9
-  minThrowPower: 5
+  minThrowPower: 10
   maxThrowPower: 20
 --- !u!4 &1371517433
 Transform:
@@ -1329,9 +1329,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b39e59d39c69f469a448a7914b34b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePointsForHit: 30
+  damagePointsForHit: 25
   healPointsPerIteration: 10
-  healingCooldownDuration: 3
+  healingCooldownDuration: 1
 --- !u!1 &1802829407
 GameObject:
   m_ObjectHideFlags: 0
