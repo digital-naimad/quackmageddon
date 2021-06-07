@@ -10,6 +10,15 @@ namespace Quackmageddon
     {
         #region Inspector fields
         [SerializeField]
+        private float minimumPitch = .5f;
+
+        [SerializeField]
+        private float maximumPitch = 2f;
+
+        [SerializeField]
+        private float minimumVolume = .1f;
+
+        [SerializeField]
         private Sound quackSound;
 
         [SerializeField]
@@ -62,9 +71,9 @@ namespace Quackmageddon
             {
                 soundToPlay.source = source;
             }
-
-            soundToPlay.source.volume = !isRandomVolumeAndPitch ? soundToPlay.volume : Random.Range(.1f, soundToPlay.volume);
-            soundToPlay.source.pitch = !isRandomVolumeAndPitch ? soundToPlay.pitch : Random.Range(.1f, soundToPlay.pitch);
+            soundToPlay.source.Stop();
+            soundToPlay.source.volume = !isRandomVolumeAndPitch ? soundToPlay.volume : Random.Range(minimumVolume, soundToPlay.volume);
+            soundToPlay.source.pitch = !isRandomVolumeAndPitch ? soundToPlay.pitch : Random.Range(minimumPitch, maximumPitch);
 
             soundToPlay.source.Play();
         }
