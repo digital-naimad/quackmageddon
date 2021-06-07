@@ -265,7 +265,7 @@ Transform:
   - {fileID: 1909126694}
   - {fileID: 1090864524}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &680055656
 PrefabInstance:
@@ -442,7 +442,7 @@ Transform:
   - {fileID: 1387551113}
   - {fileID: 753801702}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &753801700
 GameObject:
@@ -705,7 +705,7 @@ RectTransform:
   - {fileID: 680055657}
   - {fileID: 73793064}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -772,7 +772,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &946975180
 PrefabInstance:
@@ -958,7 +958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1090864524 stripped
 Transform:
@@ -1140,7 +1140,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1387551112
 GameObject:
@@ -1269,7 +1269,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1732165585
 GameObject:
@@ -1301,7 +1301,7 @@ Transform:
   m_Children:
   - {fileID: 959308593}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1732165587
 MonoBehaviour:
@@ -1410,6 +1410,121 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1843778769
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843778770}
+  - component: {fileID: 1843778771}
+  m_Layer: 0
+  m_Name: Sound Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1843778770
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843778769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.69987494, y: 3.26761, z: 0.01792562}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1843778771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843778769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e465d3f4cc3b641489485143547efce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quackSound:
+    name: Quack
+    soundClip: {fileID: 8300000, guid: 42554709f6266a44e8e9a2f758a43b7b, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+  squeezeSounds:
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: a833eb5d1486db845a7838dfd65dfc8d, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: f190b0c3145ed30438ef100cc6076ede, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: a45fbf655aefafe43b6b8e47b9b47ae9, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 74117ec31ee20a748a3b9f44718127e6, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: a5d1067e625e1b24ba0bf55005a911a5, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 13102c5f1a7ef5545919e08833adf48e, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 4552514d6d9b47045adde159bfa338fb, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 50d427da15d4f8d469dfb9edd96d2356, type: 3}
+    volume: 0.5
+    pitch: 0
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 531e02fb6a9bfec4999c2cd1a46081e6, type: 3}
+    volume: 0
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 417ba4a3d42cb8149ab652e0bf182784, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 1f01bd09a72afcb46ae655a880a74c56, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: a11c73a4805b1fd43b91f88c2337c3a2, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 517b9734cc51de844800498ed5be9447, type: 3}
+    volume: 0.5
+    pitch: 0
+    source: {fileID: 0}
 --- !u!1001 &1909126693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1524,7 +1639,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1975972814
 MonoBehaviour:
@@ -1627,7 +1742,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2133597479
 GameObject:
