@@ -134,23 +134,6 @@ public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
 *Inspector's fields*
 
       * Uses raycasting technique to aiming targets and shooting
-      
-      ```cs private void Update()
-        {
-            RaycastHit hit;
-            bool isHittingAnything = Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range);
-
-            if (isHittingAnything)
-            {
-                if (hit.collider.CompareTag(Enemy.EnemyTag))
-                {
-                    aimPointer.color = enemyPointingColor;
-                }
-                
-                (..)
-                ```
-                
-                
 
 * ### Health Manager
 
