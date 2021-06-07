@@ -14,5 +14,8 @@ namespace Quackmageddon
 
         public const string ScoreUpdate = "Score update";
         public const string HealthUpdate = "Health update";
+
+        public const string PauseSpawning = "Pause spawning";
+        public const string ResumeSpawning = "Resume spawning";
     }
 }
