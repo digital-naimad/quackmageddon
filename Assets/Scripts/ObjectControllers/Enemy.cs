@@ -4,7 +4,7 @@ namespace Quackmageddon
 {
     /// <summary>
     /// Enemy prefab controller implementing IPooledObject interface. 
-    /// Controls enemy health value.  Contains own Canvas to display HP bar. Launches explosion effect.
+    /// Controls enemy health value.  Contains own Canvas to display HP bar. Launches explosion effect and SFX.
     /// </summary>
     public class Enemy : MonoBehaviour, IPooledObject
     {
@@ -13,8 +13,7 @@ namespace Quackmageddon
         public static readonly string BeakshotTag = "EnemyBeak";
         #endregion
 
-        #region Properties & fields
-
+        #region Inspector fields
         [SerializeField]
         private short initialHealthAmount = HealthManager.FullHealthValue;
 
@@ -33,6 +32,11 @@ namespace Quackmageddon
         [SerializeField]
         private ExplosionController explosionEffect;
 
+        [SerializeField]
+        private AudioSource audioSource = null;
+        #endregion
+
+        #region Properties and fields
         /// <summary>
         /// Property.
         /// Note: caches rigid body component in private field
@@ -94,6 +98,11 @@ namespace Quackmageddon
         /// <param name="healthPointsAmount">short</param>
         public void TakeDamage(short healthPointsAmount)
         {
+            if (CurrentHealthAmount == HealthManager.FullHealthValue)
+            {
+                SoundManager.Instance.PlayRandomSqueeze();
+            }
+
             CurrentHealthAmount -= healthPointsAmount;
 
             if (currentHealthAmount > 0)
@@ -134,6 +143,8 @@ namespace Quackmageddon
             meshesContainer.SetActive(false);
             ownedCanvas.gameObject.SetActive(false);
             this.Rigidbody.useGravity = false;
+
+            SoundManager.Instance.PlayQuack(audioSource);
         }
 
         private void OnCollisionEnter(Collision collision)
