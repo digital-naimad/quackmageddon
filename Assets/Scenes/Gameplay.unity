@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooler: {fileID: 1975972814}
   cameraToLookAt: {fileID: 959308592}
-  spawnIntervalInSeconds: 8
+  spawnIntervalInSeconds: 3
   spawnHorizontalDistance: 70
   spawnAltitude: 0.9
   minThrowPower: 5
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePointsForHit: 20
-  healPointsPerIteration: 5
+  healPointsPerIteration: 10
   healingCooldownDuration: 3
 --- !u!1 &1802829407
 GameObject:
@@ -1728,7 +1728,7 @@ MonoBehaviour:
   - tag: Duckie
     prefab: {fileID: 2367759011013485666, guid: 2c7cea18ee7c39544903551956796e52,
       type: 3}
-    poolSize: 25
+    poolSize: 50
 --- !u!1 &1999770541 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 692709634218032860, guid: 446f99004a06e8f47a0343bac01509b8,
