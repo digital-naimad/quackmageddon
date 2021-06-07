@@ -40,7 +40,10 @@ public class ExplosionController : MonoBehaviour
             sparksParticles.Play();
         }
 
-        StartCoroutine(HideWithDelay(animationLifespan));
+        if (gameObject.active)
+        {
+            StartCoroutine(HideWithDelay(animationLifespan));
+        }
     }
 
     IEnumerator HideWithDelay(float delay)
