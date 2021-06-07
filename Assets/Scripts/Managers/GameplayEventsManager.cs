@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Quackmageddon
 {
@@ -44,13 +43,11 @@ namespace Quackmageddon
         {
             if (!listenersDictionary.ContainsKey(eventType))
             {
-                Debug.Log("listenersDictionary: Cannot unregister callback for eventType: " + eventType);
                 return;
             }
 
             if (!listenersDictionary[eventType].Contains(callbackFunction))
             {
-                Debug.Log("actionsList: Cannot unregister callback for eventType: " + eventType);
                 return;
             }
 
@@ -66,7 +63,6 @@ namespace Quackmageddon
         {
             if (!listenersDictionary.ContainsKey(eventType))
             {
-                Debug.Log("There is no any listeners registered for eventType: " + eventType);
                 return;
             }
 

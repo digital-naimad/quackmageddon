@@ -101,16 +101,13 @@ namespace Quackmageddon
         private void OnPause()
         {
             isPaused = true;
-            Debug.Log("PAUSE");
 
             GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.PauseSpawning, (foo) => { OnPause(); });
-            
         }
 
         private void OnResume()
         {
             isPaused = false;
-            Debug.Log("RESUME");
         }
         #endregion
     }
