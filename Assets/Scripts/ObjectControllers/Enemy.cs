@@ -10,6 +10,7 @@ namespace Quackmageddon
     {
         #region Static members
         public static readonly string TagName = "Duckie";
+        public static readonly string EnemyTag = "Enemy";
         public static readonly string BeakshotTag = "EnemyBeak";
         #endregion
 
@@ -98,11 +99,6 @@ namespace Quackmageddon
         /// <param name="healthPointsAmount">short</param>
         public void TakeDamage(short healthPointsAmount)
         {
-            if (CurrentHealthAmount == HealthManager.FullHealthValue)
-            {
-                SoundManager.Instance.PlayRandomSqueeze();
-            }
-
             CurrentHealthAmount -= healthPointsAmount;
 
             if (currentHealthAmount > 0)
@@ -110,6 +106,7 @@ namespace Quackmageddon
                 this.Rigidbody.useGravity = true;
                 
                 GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyHit);
+                SoundManager.Instance.PlayRandomSqueeze();
             }
             else
             {

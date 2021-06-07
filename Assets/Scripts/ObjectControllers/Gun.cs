@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Quackmageddon
 {
@@ -8,7 +9,6 @@ namespace Quackmageddon
     public class Gun : MonoBehaviour
     {
         #region Inspector's fields
-
         [SerializeField]
         private short damage = 10;
 
@@ -30,6 +30,17 @@ namespace Quackmageddon
         [SerializeField]
         private float impactIntensity = 500f;
 
+        [SerializeField]
+        private Image aimPointer;
+
+        [SerializeField]
+        private Color32 idleAimColor;
+
+        [SerializeField]
+        private Color32 enemyPointingColor;
+
+        [SerializeField]
+        private Color32 beakPointingColor;
         #endregion
 
         #region Private fields
@@ -40,11 +51,34 @@ namespace Quackmageddon
         #region Life-cycle callbacks 
         private void Update()
         {
+            RaycastHit hit;
+            bool isHittingAnything = Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range);
+
+            if (isHittingAnything)
+            {
+                if (hit.collider.CompareTag(Enemy.EnemyTag))
+                {
+                    Debug.Log("ENEMY");
+                    aimPointer.color = enemyPointingColor;
+                    
+                }
+                else if (hit.collider.CompareTag(Enemy.BeakshotTag))
+                {
+                    Debug.Log("BEAK");
+                    aimPointer.color = beakPointingColor;
+                }
+                else
+                {
+                    Debug.Log("IDLE");
+                    aimPointer.color = idleAimColor;
+                }
+            }
+
             if (Input.GetButton("Fire1"))
             {
                 if (Time.time >= autofireCooldown)
                 {
-                    Shoot();
+                    Shoot(isHittingAnything, hit);
 
                     autofireCooldown = Time.time + autoFireFrequency;
                 }
@@ -54,13 +88,14 @@ namespace Quackmageddon
 
         #region Private methods
 
-        private void Shoot()
+        private void Shoot(bool isHittingAnything, RaycastHit hit)
         {
             flashEffect.Play();
 
-            RaycastHit hit;
+            //RaycastHit hit;
 
-            if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range))
+           // if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range))
+           if (isHittingAnything)
             {
                 Enemy enemyController = hit.transform.GetComponent<Enemy>();
 

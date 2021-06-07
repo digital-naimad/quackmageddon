@@ -53,6 +53,10 @@ MonoBehaviour:
   flashEffect: {fileID: 6762883957516407123}
   impactEffectPrefab: {fileID: 100006, guid: 70b317454216e2840b1f740404cd2fbd, type: 3}
   impactIntensity: 100
+  aimPointer: {fileID: 0}
+  idleAimColor: {r: 0, g: 0, b: 0, a: 0}
+  enemyPointingColor: {r: 1, g: 0.03993158, b: 0, a: 0}
+  beakPointingColor: {r: 0.9952285, g: 1, b: 0, a: 0}
 --- !u!1 &4101985320739546914
 GameObject:
   m_ObjectHideFlags: 0
