@@ -1141,7 +1141,7 @@ MonoBehaviour:
   spawnHorizontalDistance: 70
   spawnAltitude: 0.9
   minThrowPower: 5
-  maxThrowPower: 15
+  maxThrowPower: 20
 --- !u!4 &1371517433
 Transform:
   m_ObjectHideFlags: 0
@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b39e59d39c69f469a448a7914b34b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePointsForHit: 20
+  damagePointsForHit: 30
   healPointsPerIteration: 10
   healingCooldownDuration: 3
 --- !u!1 &1802829407
