@@ -58,18 +58,14 @@ namespace Quackmageddon
             {
                 if (hit.collider.CompareTag(Enemy.EnemyTag))
                 {
-                    Debug.Log("ENEMY");
                     aimPointer.color = enemyPointingColor;
-                    
                 }
                 else if (hit.collider.CompareTag(Enemy.BeakshotTag))
                 {
-                    Debug.Log("BEAK");
                     aimPointer.color = beakPointingColor;
                 }
                 else
                 {
-                    Debug.Log("IDLE");
                     aimPointer.color = idleAimColor;
                 }
             }
