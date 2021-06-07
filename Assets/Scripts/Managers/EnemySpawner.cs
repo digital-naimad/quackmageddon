@@ -3,7 +3,7 @@
 namespace Quackmageddon
 {
     /// <summary>
-    /// 
+    /// Spawns enemy using ObjectPooler. Listens to Pause and Resume events
     /// </summary>
     public class EnemySpawner : MonoBehaviour
     {
@@ -33,22 +33,20 @@ namespace Quackmageddon
         #endregion
 
         private Vector3 positionToFaceTo = new Vector3(0,0,0);
+        private bool isPaused = false;
 
         #region Life-cycle callbacks
-
-        private void Awake()
+        private void Start()
         {
-            
-        }
-
-        void Start()
-        {
+            GameplayEventsManager.Instance.RegisterListener(GameplayEventType.PauseSpawning, (foo) => { OnPause(); });
+            GameplayEventsManager.Instance.RegisterListener(GameplayEventType.ResumeSpawning, (foo) => { OnResume(); });
             StartSpawning();
         }
 
-        void Update()
+        private void OnDestroy()
         {
-           
+            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.ResumeSpawning, (foo) => { OnResume(); });
+            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.PauseSpawning, (foo) => { OnPause(); });
         }
 
         #endregion
@@ -69,6 +67,11 @@ namespace Quackmageddon
         /// </summary>
         public void SpawnEnemy()
         {
+            if (isPaused)
+            {
+                return;
+            }
+
             float randomAngleInDegrees = Random.Range(0f, 360f);
             float randomAngleInRadians = randomAngleInDegrees * Mathf.Deg2Rad;
 
@@ -94,5 +97,21 @@ namespace Quackmageddon
 
         #endregion
 
+        #region Event listeners
+        private void OnPause()
+        {
+            isPaused = true;
+            Debug.Log("PAUSE");
+
+            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.PauseSpawning, (foo) => { OnPause(); });
+            
+        }
+
+        private void OnResume()
+        {
+            isPaused = false;
+            Debug.Log("RESUME");
+        }
+        #endregion
     }
 }
