@@ -23,7 +23,7 @@ Project is developed with:
 ## Features
 
 * ### Custom Water Surface Shader
-![image](https://user-images.githubusercontent.com/1534654/121080011-2b1cb900-c7db-11eb-8096-20703bc46f7f.png)
+![AnimatedWaterSurfaceShader](https://user-images.githubusercontent.com/1534654/121162352-247b5980-c84e-11eb-9cac-6b823371dd99.gif)
 
 > * Implemented using Unity Shader Graph
 
