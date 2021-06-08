@@ -1,5 +1,5 @@
 # Quackmageddon: The Duckie Hunting Game
-> The main goal of the project is to develop a shooting survival game prototype using Unity Engine and the Cardboard SDK provided by Google company.
+> The main goal of the project is to develop a **shooting survival game prototype** using **Unity Engine** and the **Google Cardboard SDK**.
 
 ![popUpShort](https://user-images.githubusercontent.com/1534654/121075266-4389d500-c7d5-11eb-9998-3153f64728de.gif)
 
@@ -30,18 +30,17 @@ Project is developed with:
 * ### Custom HP Bar with his simplified variant
 ![Health Bar](https://user-images.githubusercontent.com/1534654/121071427-39b1a300-c7d0-11eb-8737-0c4da76c286b.gif)
 
-> * To find in Assets/Prefabs/UI directory
+> * To find in `Assets/Prefabs/UI` directory
 
 ![Health Bar prefabs](https://user-images.githubusercontent.com/1534654/121075941-138f0180-c7d6-11eb-8fb6-1ad3391fef11.png)
 
 * ### Custom Particle Systems
-> * Particle prefabs are placed in Assets/Prefabs/Effects.
+> * Particle prefabs are placed in `Assets/Prefabs/Effects`.
 > * Prefab's hierarchy contains a few nodes with added Particle System component, an addictional point light and also root node with controller script.
 
 ![Particle prefab hierarchy](https://user-images.githubusercontent.com/1534654/121151286-833bd580-c844-11eb-9a69-04d4f5775a2d.png)
 
 ![Explosion Controller Script](https://user-images.githubusercontent.com/1534654/121151426-a23a6780-c844-11eb-8697-71ae4f8fddf4.png)
-
 
 * ### Beakshot mechanic
 ![Beakshot score!](https://user-images.githubusercontent.com/1534654/121077544-083cd580-c7d8-11eb-9457-6921a8536db2.png)
@@ -49,7 +48,7 @@ Project is developed with:
 > * The equivalent of a headshot for duckies, but much harder to achieve. 
 > * Its indicating by change color of an aiming pointer, and also rewarded with extra score.
 
-# OOP Principles and Software Design Patterns
+## OOP Principles and Software Design Patterns
 
 * ### MonoSingleton
 > * Thread-safe implementation of **Singleton Pattern** for MonoBehaviour.
@@ -127,8 +126,8 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
 
 ```cs 
 public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
-    {
-        private Dictionary<string, List<Action<short>>> listenersDictionary;
+{
+     private Dictionary<string, List<Action<short>>> listenersDictionary;
 ```
 
 * ### Universal Object Pooler
@@ -154,9 +153,8 @@ public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
 
 ![Health manager](https://user-images.githubusercontent.com/1534654/121090763-54dcdc80-c7e9-11eb-93ad-cfc28d2e762b.png)
 
-> * Manages  health points and also dispatches GameplayEventType.HealthUpdate event using GameplayEventManager. 
+> * Manages health points and also dispatches GameplayEventType.HealthUpdate event using GameplayEventManager. 
 > * Includes auto-healing mechanism with cooldown.
-
 
 ![Health Manager in hierarchy](https://user-images.githubusercontent.com/1534654/121090824-6a520680-c7e9-11eb-93b5-ef8e6c2fab6d.png)
 
@@ -167,21 +165,21 @@ public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
 > * Uses objects of Sound serializable class to store data and help to display its content in a Inspector
 
 ```cs  
-    [System.Serializable]
-    public class Sound
-    {
-        public string name;
-        public AudioClip soundClip;
+ [System.Serializable]
+ public class Sound
+ {
+     public string name;
+     public AudioClip soundClip;
 
-        [Range(0f, 1f)]
-        public float volume = .5f;
+     [Range(0f, 1f)]
+     public float volume = .5f;
 
-        [Range(.1f, 3f)]
-        public float pitch = 1f;
+     [Range(.1f, 3f)]
+     public float pitch = 1f;
 
-        [HideInInspector]
-        public AudioSource source;
-    }
+     [HideInInspector]
+     public AudioSource source;
+ }
 ```
 > * Contains method for playing SFX with randomized pitch and volume values.
 ```cs
@@ -218,17 +216,15 @@ To run the game in the Unity Editor just go to Assets/Scenes directory and launc
 ![Gameplay Scene Hierarchy](https://user-images.githubusercontent.com/1534654/121090426-e13acf80-c7e8-11eb-9a62-457e79c29046.png)
 
 ## Inspirations 
-The idea for a gameplay setting is based on a real event...
+The idea for a gameplay setting is based on a real event ...
 
 > *On 10 January 1992, during a storm in the North Pacific Ocean close to the International Date Line twelve 40-foot (12-m) intermodal containers were washed overboard. One of these containers held 28,800 Floatees - that is a plastic rubber ducks. Some of the toys landed along Pacific Ocean shores, such as Hawaii.*
 
-...but also on the typical programmer's everyday experience. 
+... but also on the typical programmer's everyday experience. 
 
 > *In software engineering, <b>rubber duck debugging</b> is a method of debugging code. The name is a reference to a story in the book The Pragmatic Programmer in which a programmer would carry around a rubber duck and debug their code by forcing themselves to explain it, line-by-line, to the duck.*
 
-So the idea for a backstory was that, rubber ducklings, driven to the extreme due to fact that for long years they had to listen about the problems of software developers. Developers, who did not even expect that they understood the words addressed to them. So it was a form of torture, as a result of which they gained some kind of self-awareness, but also began to cause them a desire to pay back for those decades of suffering of their species. 
-
-And the high seas accident involving thousands of duckies was not an accident at all ... but only the beginning of the Quackmageddon!
+So the idea for a backstory was that rubber ducklings, driven to the extreme due to fact that for long years they had to listen about the problems of software developers. Developers, who did not even expect that they understood the words addressed to them. So it was a form of torture, as a result of which they gained some kind of self-awareness, but also began to cause them a desire to pay back for those decades of suffering of their species. Finally the high seas accident involving thousands of duckies was not an accident at all, but only the beginning of **the Quackmageddon**!
 
 Sources: [Friendly Floatees - Wikipedia](https://en.wikipedia.org/wiki/Friendly_Floatees), [Rubber duck debugging - Wikipedia]()
 
