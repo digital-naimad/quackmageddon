@@ -43,10 +43,14 @@ Project is developed with:
 ![Explosion Controller Script](https://user-images.githubusercontent.com/1534654/121151426-a23a6780-c844-11eb-8697-71ae4f8fddf4.png)
 
 * ### Beakshot mechanic
+
+![BeakshotShort](https://user-images.githubusercontent.com/1534654/121171392-bf783180-c856-11eb-9883-3d04d1cd9069.gif)
+
+> * The equivalent of a headshot for duckies, but much more difficult to achieve.
+
 ![Beakshot score!](https://user-images.githubusercontent.com/1534654/121077544-083cd580-c7d8-11eb-9457-6921a8536db2.png)
 
-> * The equivalent of a headshot for duckies, but much harder to achieve. 
-> * Its indicating by change color of an aiming pointer, and also rewarded with extra score.
+> * The possibility of taking a beakshot is indicated by the change of crosshair color to red. It is also rewarded with extra score.
 
 ## OOP Principles and Software Design Patterns
 
