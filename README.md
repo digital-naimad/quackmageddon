@@ -52,7 +52,7 @@ Project is developed with:
 # OOP Principles and Software Design Patterns
 
 * ### MonoSingleton
-> * Thread-safe implementation of Singleton Pattern for MonoBehaviour.
+> * Thread-safe implementation of **Singleton Pattern** for MonoBehaviour.
 > * Based on dictionary instead of using FindObjectsOfType method or creating GameObject during the game, which are very inefficient ways of implementation this pattern.
    
 ```cs
@@ -135,7 +135,7 @@ public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
 ![image](https://user-images.githubusercontent.com/1534654/121073987-8b0f6180-c7d3-11eb-80b2-7079f553a98b.png)
 
 > * Implements **Pool Pattern**. 
-> * Calls OnSpawn method of IPooledObject interface. 
+> * Calls OnSpawn method of **IPooledObject interface**. 
 > * Listening for Pause event to disable all pooled objects.
 
 * ### Enemy Spawner
@@ -160,7 +160,54 @@ public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
 
 ![Health Manager in hierarchy](https://user-images.githubusercontent.com/1534654/121090824-6a520680-c7e9-11eb-93b5-ef8e6c2fab6d.png)
 
+* ### Sound Manager
+![Sound manager inspector](https://user-images.githubusercontent.com/1534654/121155120-cf3c4980-c847-11eb-9999-019515959c6a.png)
 
+> * Extends custom implementation of **Singleton Pattern** for MonoBehaviour objects.
+> * Uses objects of Sound serializable class to store data and help to display its content in a Inspector
+
+```cs  
+    [System.Serializable]
+    public class Sound
+    {
+        public string name;
+        public AudioClip soundClip;
+
+        [Range(0f, 1f)]
+        public float volume = .5f;
+
+        [Range(.1f, 3f)]
+        public float pitch = 1f;
+
+        [HideInInspector]
+        public AudioSource source;
+    }
+```
+> * Contains method for playing SFX with randomized pitch and volume values.
+```cs
+   public void PlaySound(Sound soundToPlay, bool isRandomVolumeAndPitch = false, AudioSource source = null )
+   {
+      if (source != null)
+      {
+          soundToPlay.source = source;
+      }
+      soundToPlay.source.Stop();
+      soundToPlay.source.volume = !isRandomVolumeAndPitch ? soundToPlay.volume : Random.Range(minimumVolume, soundToPlay.volume);
+      soundToPlay.source.pitch = !isRandomVolumeAndPitch ? soundToPlay.pitch : Random.Range(minimumPitch, maximumPitch);
+
+      soundToPlay.source.Play();
+   }
+```
+
+* ### Enemy controller
+> * Extends MonoBehaviour and also implements **IPooledObject interface**
+```cs 
+public class Enemy : MonoBehaviour, IPooledObject
+```
+> * Controls owned simplified version of custom HP bar placed on an own Canvas (billboard)
+> * Also controls explosion effect which is a set of Particles Systems triggered by a script.
+
+![Enemy controller Inspector](https://user-images.githubusercontent.com/1534654/121157611-01e74180-c84a-11eb-89b7-1e407e1b2ce0.png)
 
 
 ## Setup
