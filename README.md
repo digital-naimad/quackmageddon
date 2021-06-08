@@ -6,6 +6,7 @@
 ## Table of contents
 * [Technologies Used](#technologies-used)
 * [Features](#features)
+* [OOP Principles and Software Design Patterns](#oop-principles-and-software-design-patterns)
 * [Setup](#setup)
 * [Inspirations](#inspirations)
 * [Contact](#contact)
@@ -24,44 +25,45 @@ Project is developed with:
 * ### Custom Water Surface Shader
 ![image](https://user-images.githubusercontent.com/1534654/121080011-2b1cb900-c7db-11eb-8096-20703bc46f7f.png)
 
-     - Implemented using Unity Shader Graph
-
+> * Implemented using Unity Shader Graph
 
 * ### Custom HP Bar with his simplified variant
 ![Health Bar](https://user-images.githubusercontent.com/1534654/121071427-39b1a300-c7d0-11eb-8737-0c4da76c286b.gif)
 
-    - To find in Assets/Prefabs/UI directory
+> * To find in Assets/Prefabs/UI directory
 
 ![Health Bar prefabs](https://user-images.githubusercontent.com/1534654/121075941-138f0180-c7d6-11eb-8fb6-1ad3391fef11.png)
 
-* ### Universal Object Pooler
-![image](https://user-images.githubusercontent.com/1534654/121073987-8b0f6180-c7d3-11eb-80b2-7079f553a98b.png)
+* ### Custom Particle Systems
+> * Particle prefabs are placed in Assets/Prefabs/Effects.
+> * Prefab's hierarchy contains a few nodes with added Particle System component, an addictional point light and also root node with controller script.
 
-    - Implements **Pool Pattern**. 
-    - Calls OnSpawn method of IPooledObject interface. 
-    - Listening for Pause event to disable all pooled objects.
+![Particle prefab hierarchy](https://user-images.githubusercontent.com/1534654/121151286-833bd580-c844-11eb-9a69-04d4f5775a2d.png)
 
-* ### Enemy Spawner
-![Enemy Spawner Inspector](https://user-images.githubusercontent.com/1534654/121076435-b778ad00-c7d6-11eb-8126-ac3f14d4b647.png)
+![Explosion Controller Script](https://user-images.githubusercontent.com/1534654/121151426-a23a6780-c844-11eb-8697-71ae4f8fddf4.png)
 
-    - Spawns enemies using ObjectPooler. 
-    - Listens to Pause and Resume events.
 
 * ### Beakshot mechanic
 ![Beakshot score!](https://user-images.githubusercontent.com/1534654/121077544-083cd580-c7d8-11eb-9457-6921a8536db2.png)
 
-    - The equivalent of a headshot for duckies, but much harder to achieve. 
-    - Its indicating by change color of an aiming pointer, and also rewarded with extra score.
+> * The equivalent of a headshot for duckies, but much harder to achieve. 
+> * Its indicating by change color of an aiming pointer, and also rewarded with extra score.
+
+# OOP Principles and Software Design Patterns
 
 * ### MonoSingleton
-    - Thread-safe implementation of Singleton Pattern for MonoBehaviour.
-    - Based on dictionary instead of using FindObjectsOfType or creating GameObject during the game, which are very inefficient
+> * Thread-safe implementation of Singleton Pattern for MonoBehaviour.
+> * Based on dictionary instead of using FindObjectsOfType method or creating GameObject during the game, which are very inefficient ways of implementation this pattern.
    
 ```cs
 public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
 {
     #region Static fields
-    protected static bool Quitting { get; private set; }
+    protected static bool Quitting 
+    { 
+         get; 
+         private set; 
+    }
 
     private static readonly object Lock = new object();
     private static Dictionary<System.Type, MonoSingleton<T>> instancesDictionary;
@@ -119,34 +121,47 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
 ```
 
 * ### Gameplay Event Manager
-    - Implements **Observer Pattern**.
-    - Using implementation of Singleton Pattern extending MonoBehaviour.
-    - Based Dictionary containint list of Actions.
+> * Implements **Observer Pattern**.
+> * Using implementation of Singleton Pattern extending MonoBehaviour.
+> * Bases on Dictionary containining list of Actions.
+
 ```cs 
 public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
     {
         private Dictionary<string, List<Action<short>>> listenersDictionary;
 ```
 
+* ### Universal Object Pooler
+![image](https://user-images.githubusercontent.com/1534654/121073987-8b0f6180-c7d3-11eb-80b2-7079f553a98b.png)
+
+> * Implements **Pool Pattern**. 
+> * Calls OnSpawn method of IPooledObject interface. 
+> * Listening for Pause event to disable all pooled objects.
+
+* ### Enemy Spawner
+![Enemy Spawner Inspector](https://user-images.githubusercontent.com/1534654/121076435-b778ad00-c7d6-11eb-8126-ac3f14d4b647.png)
+
+> * Spawns enemies using ObjectPooler. 
+> * Listens to Pause and Resume events.
+
 * ### Gun controller script
 ![Gun controllers inspector](https://user-images.githubusercontent.com/1534654/121089059-df700c80-c7e6-11eb-8e64-1622dd4064be.png)
 
-*Inspector's fields*
-
-      * Uses raycasting technique to aiming targets and shooting
+> * Uses raycasting technique to aiming targets and shooting.
+> * Also uses tags to detect specified targets.
 
 * ### Health Manager
 
 ![Health manager](https://user-images.githubusercontent.com/1534654/121090763-54dcdc80-c7e9-11eb-93ad-cfc28d2e762b.png)
 
-    - Manages  health points and also dispatches GameplayEventType.HealthUpdate event using GameplayEventManager. 
-    - Includes auto-healing mechanism with cooldown.
+> * Manages  health points and also dispatches GameplayEventType.HealthUpdate event using GameplayEventManager. 
+> * Includes auto-healing mechanism with cooldown.
 
 
 ![Health Manager in hierarchy](https://user-images.githubusercontent.com/1534654/121090824-6a520680-c7e9-11eb-93b5-ef8e6c2fab6d.png)
 
-* ### Custom Particle Systems
-    
+
+
 
 ## Setup
 To run the game in the Unity Editor just go to Assets/Scenes directory and launch the Gameplay scene.
