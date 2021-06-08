@@ -213,24 +213,44 @@ public class Enemy : MonoBehaviour, IPooledObject
 
 
 ## Setup
-To run the game in the Unity Editor just go to Assets/Scenes directory and launch the Gameplay scene.
+
+* ### Unity Editor
 
 ![Assets/Scenes/Gameplay.unity](https://user-images.githubusercontent.com/1534654/121062616-952a6380-c7c5-11eb-9881-2a5bb5898dab.png)
 
+To run the game in the Unity Editor:
+1. Select `Assets/Scenes` directory in the **Project** window.
+2. Launch a scene named **Gameplay**.
+3. Click **Play** button placed on the top of an Editor to start the gameplay.
+
 ![Gameplay Scene Hierarchy](https://user-images.githubusercontent.com/1534654/121090426-e13acf80-c7e8-11eb-9a62-457e79c29046.png)
+
+* ### How to build the game
+
+![Build Settings](https://user-images.githubusercontent.com/1534654/121181539-6b734a00-c862-11eb-9e86-e3ff4011af72.png)
+
+1. In the Unity Editor go to **Build Settings** by clicking on `File > Build Settings...` (or alternatively press `Ctrl+Shift+B` shortkey).
+2. Make sure **Android** is set as the target platform. If not then select **Android** and click the **Switch Platform** button.
+3. Connect your phone device to your computer using **USB cable**.
+4. Click `File > Build and Run` and Unity will build the project into an **Android APK**, installs it on the device, and launches it.
+5. Put the phone in your **Cardboard viewer** device and try out the gameplay.
 
 ## Inspirations 
 The idea for a gameplay setting is based on a real event ...
 
-> *On 10 January 1992, during a storm in the North Pacific Ocean close to the International Date Line twelve 40-foot (12-m) intermodal containers were washed overboard. One of these containers held 28,800 Floatees - that is a plastic rubber ducks. Some of the toys landed along Pacific Ocean shores, such as Hawaii.*
+> *On 10 January 1992, during a storm in the North Pacific Ocean close to the International Date Line twelve 40-foot (12-m) intermodal containers were washed overboard. One of these containers held **28,800 Floatees** - that is a plastic rubber ducks. Some of the **toys landed along Pacific Ocean shores**, such as Hawaii.*
 
 ... but also on the typical programmer's everyday experience. 
 
+![Rubber duck assisting with debugging](https://user-images.githubusercontent.com/1534654/121182082-02d89d00-c863-11eb-8046-2b4afdccba62.png)
+
 > *In software engineering, <b>rubber duck debugging</b> is a method of debugging code. The name is a reference to a story in the book The Pragmatic Programmer in which a programmer would carry around a rubber duck and debug their code by forcing themselves to explain it, line-by-line, to the duck.*
 
-So the idea for a backstory was that rubber ducklings, driven to the extreme due to fact that for long years they had to listen about the problems of software developers. Developers, who did not even expect that they understood the words addressed to them. So it was a form of torture, as a result of which they gained some kind of self-awareness, but also began to cause them a desire to pay back for those decades of suffering of their species. Finally the high seas accident involving thousands of duckies was not an accident at all, but only the beginning of **the Quackmageddon**!
+So the idea for a backstory was that rubber ducklings, driven to the extreme due to fact that for long years they had to listen about the problems of software developers. Developers, who did not even expect that they understood the words addressed to them. So it was a form of torture, as a result of which they gained some kind of self-awareness, but also began to cause them a desire to pay back for those decades of suffering of their species. 
 
-Sources: [Friendly Floatees - Wikipedia](https://en.wikipedia.org/wiki/Friendly_Floatees), [Rubber duck debugging - Wikipedia]()
+Finally the high seas accident involving thousands of duckies was not an accident at all, but just the beginning of **the Quackmageddon**!
+
+Sources: [Friendly Floatees - Wikipedia](https://en.wikipedia.org/wiki/Friendly_Floatees), [Rubber duck debugging - Wikipedia](https://en.wikipedia.org/wiki/Rubber_duck_debugging)
 
 ## Contact
 *Created by* **Damian Śremski** - <d.sremski@gmail.com> - [linkedin.com/in/damianśremski](https://linkedin.com/in/damianśremski)
