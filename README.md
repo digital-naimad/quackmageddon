@@ -242,11 +242,11 @@ The idea for a gameplay setting is based on a real event ...
 
 ... but also on the typical programmer's everyday experience. 
 
-![Rubber duck assisting with debugging](https://user-images.githubusercontent.com/1534654/121182082-02d89d00-c863-11eb-8046-2b4afdccba62.png)
-
 > *In software engineering, <b>rubber duck debugging</b> is a method of debugging code. The name is a reference to a story in the book The Pragmatic Programmer in which a programmer would carry around a rubber duck and debug their code by forcing themselves to explain it, line-by-line, to the duck.*
 
-So the idea for a backstory was that rubber ducklings, driven to the extreme due to fact that for long years they had to listen about the problems of software developers. Developers, who did not even expect that they understood the words addressed to them. So it was a form of torture, as a result of which they gained some kind of self-awareness, but also began to cause them a desire to pay back for those decades of suffering of their species. 
+![Rubber duck assisting with debugging](https://user-images.githubusercontent.com/1534654/121182082-02d89d00-c863-11eb-8046-2b4afdccba62.png)
+
+So the idea for a backstory was that rubber ducklings, driven to the extreme due to fact that for long years they had to listen about the problems of software developers. Developers, who did not even expect that they understood the words addressed to them. So it was a form of torture, as a result of which they gained some kind of the self-awareness, but also began to cause them a desire to pay back for those decades of suffering of their species. 
 
 Finally the high seas accident involving thousands of duckies was not an accident at all, but just the beginning of **the Quackmageddon**!
 
