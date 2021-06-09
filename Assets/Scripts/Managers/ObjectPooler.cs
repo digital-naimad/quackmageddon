@@ -9,14 +9,6 @@ namespace Quackmageddon
     public class ObjectPooler : MonoBehaviour
     {
         #region Inspector fields
-        [System.Serializable]
-        public struct Pool
-        {
-            public string tag;
-            public GameObject prefab;
-            public short poolSize;
-        }
-
         [SerializeField]
         private List<Pool> poolsList;
         #endregion
