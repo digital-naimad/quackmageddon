@@ -18,6 +18,7 @@ Project is developed with:
 * Low weight render pipeline
 * Unity Shader Graph
 * Unity UI & Animator
+* TextMesh Pro
 * Adobe Photoshop CS
 
 ## Features
@@ -25,12 +26,12 @@ Project is developed with:
 * ### Custom Water Surface Shader
 ![AnimatedWaterSurfaceShader](https://user-images.githubusercontent.com/1534654/121162352-247b5980-c84e-11eb-9cac-6b823371dd99.gif)
 
-> * Implemented using Unity Shader Graph
+> * Implemented using Unity Shader Graph.
 
 * ### Custom HP Bar with his simplified variant
 ![Health Bar](https://user-images.githubusercontent.com/1534654/121071427-39b1a300-c7d0-11eb-8737-0c4da76c286b.gif)
 
-> * To find in `Assets/Prefabs/UI` directory
+> * To find in `Assets/Prefabs/UI` directory.
 
 ![Health Bar prefabs](https://user-images.githubusercontent.com/1534654/121075941-138f0180-c7d6-11eb-8fb6-1ad3391fef11.png)
 
@@ -140,6 +141,17 @@ public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
 > * Implements **Pool Pattern**. 
 > * Calls OnSpawn method of **IPooledObject interface**. 
 > * Listening for Pause event to disable all pooled objects.
+> * Uses Pool serializable structs to store data.
+
+```cs 
+[System.Serializable]
+public struct Pool
+{
+   public string tag;
+   public GameObject prefab;
+   public short poolSize;
+}
+```
 
 * ### Enemy Spawner
 ![Enemy Spawner Inspector](https://user-images.githubusercontent.com/1534654/121076435-b778ad00-c7d6-11eb-8126-ac3f14d4b647.png)
