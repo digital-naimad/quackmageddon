@@ -13,14 +13,14 @@ namespace Quackmageddon
         private List<Pool> poolsList;
         #endregion
 
-        private Dictionary<string, Queue<GameObject>> poolDictionary;
+        private Dictionary<SpawnType, Queue<GameObject>> poolDictionary;
 
         #region Life-cycle callbacks
         private void Start()
         {
             GameplayEventsManager.Instance.RegisterListener(GameplayEventType.PauseSpawning, (foo) => { OnPause(); });
 
-            poolDictionary = new Dictionary<string, Queue<GameObject>>();
+            poolDictionary = new Dictionary<SpawnType, Queue<GameObject>>();
 
             foreach (Pool pool in poolsList)
             {
@@ -33,7 +33,7 @@ namespace Quackmageddon
                     objectPool.Enqueue(newObject);
                 }
 
-                poolDictionary.Add(pool.tag, objectPool);
+                poolDictionary.Add(pool.spawnType, objectPool);
             }
         }
 
@@ -46,19 +46,19 @@ namespace Quackmageddon
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="tag">string</param>
+        /// <param name="spawnType">string</param>
         /// <param name="position"></param>
         /// <param name="rotation"></param>
         /// <returns></returns>
-        public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
+        public GameObject SpawnFromPool(SpawnType spawnType, Vector3 position, Quaternion rotation)
         {
-            if (!poolDictionary.ContainsKey(tag))
+            if (!poolDictionary.ContainsKey(spawnType))
             {
-                Debug.Log("Warning: Pool with tag " + tag + " does not exist");
+                Debug.Log("Warning: Pool with tag " + spawnType + " does not exist");
                 return null;
             }
 
-            GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+            GameObject objectToSpawn = poolDictionary[spawnType].Dequeue();
             objectToSpawn.SetActive(true);
             objectToSpawn.transform.position = position;
             objectToSpawn.transform.rotation = rotation;
@@ -70,7 +70,7 @@ namespace Quackmageddon
                 pooledObject.OnSpawn();
             }
 
-            poolDictionary[tag].Enqueue(objectToSpawn);
+            poolDictionary[spawnType].Enqueue(objectToSpawn);
 
             return objectToSpawn;
         }
@@ -82,7 +82,7 @@ namespace Quackmageddon
         {
             foreach (Pool pool in poolsList)
             {
-                Queue<GameObject>.Enumerator enumerator = poolDictionary[pool.tag].GetEnumerator();
+                Queue<GameObject>.Enumerator enumerator = poolDictionary[pool.spawnType].GetEnumerator();
                 while (enumerator.MoveNext())
                 {
                     enumerator.Current.SetActive(false);

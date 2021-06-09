@@ -9,7 +9,6 @@ namespace Quackmageddon
     public class Enemy : MonoBehaviour, IPooledObject
     {
         #region Static members
-        public static readonly string TagName = "Duckie";
         public static readonly string EnemyTag = "Enemy";
         public static readonly string BeakshotTag = "EnemyBeak";
         #endregion

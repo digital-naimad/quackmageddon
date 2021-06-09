@@ -83,9 +83,10 @@ namespace Quackmageddon
 
             Vector3 direction = positionToFaceTo - spawnPosition;
             Vector3 initialForce = direction.normalized * Random.Range(minThrowPower, maxThrowPower);
+            SpawnType spawnType = SpawnType.Enemy; // TODO: replace this temporary solution
 
             GameObject spawnedEnemyObject = pooler.SpawnFromPool(
-                Enemy.TagName,
+                spawnType,
                 spawnPosition,
                 Quaternion.LookRotation(direction)
             );
