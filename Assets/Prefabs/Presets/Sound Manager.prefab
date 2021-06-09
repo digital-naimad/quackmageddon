@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &107636912266175201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107636912266175202}
+  - component: {fileID: 107636912266175203}
+  m_Layer: 0
+  m_Name: Sound Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &107636912266175202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107636912266175201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.69987494, y: 3.26761, z: 0.01792562}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &107636912266175203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107636912266175201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e465d3f4cc3b641489485143547efce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumPitch: 0.5
+  maximumPitch: 2
+  minimumVolume: 0.1
+  quackSound:
+    name: Quack
+    soundClip: {fileID: 8300000, guid: 42554709f6266a44e8e9a2f758a43b7b, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+  squeezeSounds:
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: a833eb5d1486db845a7838dfd65dfc8d, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: f190b0c3145ed30438ef100cc6076ede, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: a45fbf655aefafe43b6b8e47b9b47ae9, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 74117ec31ee20a748a3b9f44718127e6, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: a5d1067e625e1b24ba0bf55005a911a5, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 13102c5f1a7ef5545919e08833adf48e, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 4552514d6d9b47045adde159bfa338fb, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 50d427da15d4f8d469dfb9edd96d2356, type: 3}
+    volume: 0.5
+    pitch: 0
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 531e02fb6a9bfec4999c2cd1a46081e6, type: 3}
+    volume: 0
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 417ba4a3d42cb8149ab652e0bf182784, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: a11c73a4805b1fd43b91f88c2337c3a2, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
+  - name: Sqeeze
+    soundClip: {fileID: 8300000, guid: 517b9734cc51de844800498ed5be9447, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    source: {fileID: 0}
