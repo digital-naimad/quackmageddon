@@ -9,6 +9,17 @@ namespace Quackmageddon
     {
         #region Inspector fields
 
+        /// <summary>
+        /// Preview in inspector
+        /// </summary>
+        public short NumberOfSpawnedEnemies
+        {
+            get
+            {
+                return numberOfSpawnedEnemies;
+            }
+        }
+
         [SerializeField]
         private ObjectPooler pooler;
 
@@ -30,10 +41,28 @@ namespace Quackmageddon
         [SerializeField]
         private float maxThrowPower = 10f;
 
+        [SerializeField]
+        private short numberOfEnemiesToSpawnBoss = 10;
         #endregion
 
-        private Vector3 positionToFaceTo = new Vector3(0,0,0);
+        private Vector3 positionToFaceTo = new Vector3(0, 0, 0);
         private bool isPaused = false;
+        private short numberOfSpawnedEnemies = 0;
+
+        /// <summary>
+        /// Helper getter
+        /// </summary>
+        private SpawnType NextEnemyType
+        {
+            get
+            {
+                return pooler.IsBossAvailable
+                    && ResultManager.Instance.numberOfDestroyedEnemies > 0
+                    && ResultManager.Instance.numberOfDestroyedEnemies % numberOfEnemiesToSpawnBoss == 0 
+                    ? SpawnType.Boss
+                    : SpawnType.RushingEnemy;
+            }
+        }
 
         #region Life-cycle callbacks
         private void Start()
@@ -83,27 +112,28 @@ namespace Quackmageddon
 
             Vector3 direction = positionToFaceTo - spawnPosition;
             Vector3 initialForce = direction.normalized * Random.Range(minThrowPower, maxThrowPower);
-            SpawnType spawnType = SpawnType.Enemy; // TODO: replace this temporary solution
+
+            this.numberOfSpawnedEnemies++;
 
             GameObject spawnedEnemyObject = pooler.SpawnFromPool(
-                spawnType,
+                NextEnemyType,
                 spawnPosition,
                 Quaternion.LookRotation(direction)
             );
 
-            Enemy spawnedEnemyController = spawnedEnemyObject.GetComponent<Enemy>();
-            spawnedEnemyController.Rigidbody.velocity = initialForce;
-            spawnedEnemyController.billboard.cameraToLookAt = cameraToLookAt;
+            if (spawnedEnemyObject != null)
+            {
+                Enemy spawnedEnemyController = spawnedEnemyObject.GetComponent<Enemy>();
+                spawnedEnemyController.Rigidbody.velocity = initialForce;
+                spawnedEnemyController.billboard.cameraToLookAt = cameraToLookAt;
+            }
         }
-
         #endregion
 
         #region Event listeners
         private void OnPause()
         {
             isPaused = true;
-
-            GameplayEventsManager.Instance.UnregisterListener(GameplayEventType.PauseSpawning, (foo) => { OnPause(); });
         }
 
         private void OnResume()
