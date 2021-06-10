@@ -8,23 +8,21 @@ namespace Quackmageddon
     /// </summary>
     public class GameplayEventsManager : MonoSingleton<GameplayEventsManager>
     {
-        private Dictionary<string, List<Action<short>>> listenersDictionary;
+        private Dictionary<GameplayEventType, List<Action<short>>> listenersDictionary;
 
         #region Life-cycle callback
-
         private void Awake()
         {
-            listenersDictionary = new Dictionary<string, List<Action<short>>>();
+            listenersDictionary = new Dictionary<GameplayEventType, List<Action<short>>>();
         }
-
         #endregion
 
         /// <summary>
         /// Registers listener for an event of type given in parameter
         /// </summary>
-        /// <param name="eventType">One of constant strings defined in GameplayEventType class</param>
+        /// <param name="eventType">Choosen event type defined GameplayEventType enum</param>
         /// <param name="callbackFunction"></param>
-        public void RegisterListener(string eventType, Action<short> callbackFunction)
+        public void RegisterListener(GameplayEventType eventType, Action<short> callbackFunction)
         {
             if (!listenersDictionary.ContainsKey(eventType))
             {
@@ -37,9 +35,9 @@ namespace Quackmageddon
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="eventType">One of constant strings defined in GameplayEventType class</param>
+        /// <param name="eventType">Choosen event type defined GameplayEventType enum</param>
         /// <param name="callbackFunction"></param>
-        public void UnregisterListener(string eventType, Action<short> callbackFunction)
+        public void UnregisterListener(GameplayEventType eventType, Action<short> callbackFunction)
         {
             if (!listenersDictionary.ContainsKey(eventType))
             {
@@ -57,9 +55,9 @@ namespace Quackmageddon
         /// <summary>
         /// Callbacks all of registered listeners about occurrence of an event given in the first parameter
         /// </summary>
-        /// <param name="eventType">One of a constant strings defined in GameplayEventType class</param>
+        /// <param name="eventType">Choosen event type defined GameplayEventType enum</param>
         /// <param name="value">optional value of type short. Using by some eventTypes</param>
-        public void DispatchEvent(string eventType, short value = 0)
+        public void DispatchEvent(GameplayEventType eventType, short value = 0)
         {
             if (!listenersDictionary.ContainsKey(eventType))
             {
