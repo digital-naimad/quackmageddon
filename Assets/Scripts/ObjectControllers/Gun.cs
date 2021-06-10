@@ -86,12 +86,11 @@ namespace Quackmageddon
 
         private void Shoot(bool isHittingAnything, RaycastHit hit)
         {
+            GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.BulletFired);
+
             flashEffect.Play();
 
-            //RaycastHit hit;
-
-           // if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, range))
-           if (isHittingAnything)
+            if (isHittingAnything)
             {
                 Enemy enemyController = hit.transform.GetComponent<Enemy>();
 
