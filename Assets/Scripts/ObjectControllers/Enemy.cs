@@ -110,9 +110,7 @@ namespace Quackmageddon
             else
             {
                 CurrentHealthAmount = 0;
-                DoExplode();
-
-                GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyDestroyed);
+                DoExplode(true);  
             }
         }
 
@@ -122,13 +120,14 @@ namespace Quackmageddon
         public void NotifyBeakshot()
         {
             GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyBeakshot);
+            GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyDestroyed);
 
-            DoExplode();
+            DoExplode(true);
         }
         #endregion
 
         #region Private methods
-        private void DoExplode()
+        private void DoExplode(bool isKilled)
         {
             if (explosionEffect != null)
             {
@@ -140,6 +139,11 @@ namespace Quackmageddon
             ownedCanvas.gameObject.SetActive(false);
             this.Rigidbody.useGravity = false;
 
+            if (isKilled)
+            {
+                GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.EnemyDestroyed);
+            }
+
             SoundManager.Instance.PlayQuack(audioSource);
         }
 
@@ -149,7 +153,7 @@ namespace Quackmageddon
 
             if (collision.collider.CompareTag("Base"))
             {
-                DoExplode();
+                DoExplode(false);
 
                 GameplayEventsManager.Instance.DispatchEvent(GameplayEventType.PlayerHit);
             }
