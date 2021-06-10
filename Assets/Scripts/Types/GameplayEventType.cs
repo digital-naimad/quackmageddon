@@ -2,20 +2,23 @@
 namespace Quackmageddon
 {
     /// <summary>
-    /// Contains gameplay event types strings
+    /// Contains gameplay event types
     /// </summary>
-    public class GameplayEventType
+    public enum GameplayEventType
     {
-        public const string EnemyHit = "Enemy hit";
-        public const string EnemyDestroyed = "Enemy destroyed";
-        public const string EnemyBeakshot = "Enemy beakshot";
+        BulletFired,
 
-        public const string PlayerHit = "Player hit";
+        EnemySpawned,
+        EnemyHit,
+        EnemyDestroyed,
+        EnemyBeakshot,
 
-        public const string ScoreUpdate = "Score update";
-        public const string HealthUpdate = "Health update";
+        PlayerHit,
 
-        public const string PauseSpawning = "Pause spawning";
-        public const string ResumeSpawning = "Resume spawning";
+        ScoreUpdate,
+        HealthUpdate,
+
+        PauseSpawning,
+        ResumeSpawning
     }
 }
