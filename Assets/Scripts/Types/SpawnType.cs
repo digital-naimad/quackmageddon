@@ -8,5 +8,7 @@
         StaticEnemy,
         RushingEnemy,
         Boss,
+
+        Bonus
     }
 }
