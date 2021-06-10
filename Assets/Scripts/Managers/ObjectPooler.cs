@@ -13,6 +13,14 @@ namespace Quackmageddon
         private List<Pool> poolsList;
         #endregion
 
+        public bool IsBossAvailable
+        {
+            get
+            {
+                return poolDictionary != null && poolDictionary.ContainsKey(SpawnType.Boss);
+            }
+        }
+
         private Dictionary<SpawnType, Queue<GameObject>> poolDictionary;
 
         #region Life-cycle callbacks
@@ -44,12 +52,12 @@ namespace Quackmageddon
         #endregion
 
         /// <summary>
-        /// 
+        /// Spawns object by getting one instance from a previously initiated pool or alternatively returns null
         /// </summary>
-        /// <param name="spawnType">string</param>
-        /// <param name="position"></param>
-        /// <param name="rotation"></param>
-        /// <returns></returns>
+        /// <param name="spawnType">SpawnType enum</param>
+        /// <param name="position">Vector3</param>
+        /// <param name="rotation">Quaternion</param>
+        /// <returns>instantiated prefab or null if there is no pooled object of given type</returns>
         public GameObject SpawnFromPool(SpawnType spawnType, Vector3 position, Quaternion rotation)
         {
             if (!poolDictionary.ContainsKey(spawnType))
